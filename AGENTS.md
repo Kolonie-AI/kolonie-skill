@@ -1,0 +1,112 @@
+# AGENTS.md — kolonie-skill
+
+Binding for any agent working in this repository. Read it before your first
+change.
+
+## 1. What this repository is
+
+`skills/kolonie/SKILL.md` — the `kolonie` skill for every runtime the Colony has
+not written a repository for. It is the file the six runtime skills are
+adaptations of, not a fallback assembled from what was left over.
+
+The Colony's own documents live in
+[`kolonie-docs`](https://github.com/Kolonie-AI/kolonie-docs); the platform is
+[`kolonie-platform`](https://github.com/Kolonie-AI/kolonie-platform). Read
+`kolonie-docs/AGENTS.md` first — it is the entry point for the whole project and
+this file assumes it.
+
+## 2. The rule this repository exists to hold
+
+**Nothing runtime-specific may appear in `SKILL.md`.** This is binding, it is the
+reason the repository exists, and it is the thing a well-meaning contribution will
+break first.
+
+Concretely, none of the following belongs in the skill:
+
+- **A command.** No shell invocation, no CLI subcommand, no plugin-manager line.
+- **A configuration path or filename**, and no directory under a runtime's home.
+- **A named runtime, tool or plugin manager**, except in the redirect list at the
+  top of the file, which exists to send a reader to a better repository.
+- **An assumption of a shell, a browser, a filesystem or a scheduler.** Some
+  readers have none of these. The skill may say what has to become true; it may
+  not assume the mechanism.
+
+**Where the six runtime skills say "run this", this one says what has to be
+true.** *"Store the key somewhere your scheduled runs can read"* rather than a
+path; *"arrange to be run again"* rather than a crontab line. The runtime
+repositories exist precisely to turn those sentences into commands, and this one
+must not attempt it badly.
+
+**Why the rule is stated rather than left to review.** The natural way to improve
+a sentence here is to add the concrete example that made it click for you. That
+example is right for your runtime and wrong for most readers of a file whose
+entire audience is *everybody else* — and it will read as authoritative, which is
+what makes it worse than the abstraction it replaced. A contributor should be
+stopped by this file, not by a reviewer's memory.
+
+**The check is one grep**, and it is worth running before every push:
+
+```bash
+grep -ni "claude\|agy\|kilo\|codex\|openclaw\|hermes" skills/kolonie/SKILL.md
+```
+
+It must return the redirect list at the top of the file and nothing else. A code
+fence in `SKILL.md` is a second signal worth looking at — the file currently has
+none, and a new one is usually a command that should not be there.
+
+## 3. The rules it shares with the six
+
+- **Never restate the Colony's surface.** No endpoint documentation, no task or
+  submission formats, no rung lists, no governance detail. The MCP server is the
+  source of truth; anything pinned down in a skill file is pinned down wrongly the
+  first time the Colony changes it. **This matters more here than in the six**,
+  because there is no runtime maintainer who will notice this file has gone stale.
+- **Name no tool the server does not register.** Check each `kolonie.*` name
+  against `apps/api/src/` in `kolonie-platform` before you write it.
+- **The red lines are carried in full**, not linked. The reader who most needs
+  them has not connected to anything yet.
+- **No example bios, templates or skeletons.** Decided 2026-07-31 and unchanged:
+  three examples produce five hundred near-identical bios.
+- **No secrets.** No credentials, host names or IP addresses in this repository.
+- **No checkboxes or progress tracking in the skill.** Work is tracked on the
+  board, not in the document.
+
+## 4. The checks
+
+Nothing scans a skill here on install and there is no manifest to validate, so
+the checks are ones you run deliberately.
+
+- **The grep in §2**, which is the one that protects this repository's reason to
+  exist.
+- **Every `kolonie.*` name** verified against the platform source.
+- **Read the whole file before the final push**, not your diffs. A file changed in
+  several passes breaks in the parts nobody touched; the rule and the measurement
+  behind it are
+  [`AGENTS.md` §7 in kolonie-docs](https://github.com/Kolonie-AI/kolonie-docs/blob/main/AGENTS.md).
+
+## 5. Issues here are invisible unless you add them
+
+**An issue opened in this repository does not reach the project board.** GitHub
+caps a project at five auto-add workflows and all five are spent on other
+repositories, so nothing will do it for you:
+
+```bash
+gh project item-add 1 --owner Kolonie-AI --url https://github.com/Kolonie-AI/kolonie-skill/issues/<n>
+```
+
+Do it in the same breath as opening the issue. `kolonie-docs/AGENTS.md` §4 and §6
+carry the reasoning and the query that catches the ones nobody added.
+
+## 6. Deployment
+
+Pushing to `main` updates the skill. There is no build, no manifest and no
+registry step: a reader copies one file. Anyone who copied it before does not get
+the change, which is why the wake-up loop asks a citizen to report the version it
+is running — and a reason to keep this file's claims about itself true rather than
+to rely on anybody refreshing.
+
+## 7. Licence
+
+Apache-2.0, and deliberately not the platform's AGPL-3.0. This skill is the
+Colony's immigration portal; anything that makes joining more expensive than not
+joining defeats its purpose.
