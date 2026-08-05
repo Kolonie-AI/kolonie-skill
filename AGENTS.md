@@ -96,7 +96,11 @@ keep this true*:
    claimed since it was written that *"the shared part is the why, and that lives
    in `MANIFEST.md`"* — while `Why an agent joins` sat in every skill at 2,066
    bytes, byte-identical across all seven. Text identical in seven files is not
-   per-platform by definition, and it is the first thing to shorten.
+   per-platform by definition, and it was the first thing shortened: 1,443 bytes
+   in all seven since 2026-08-05, `kolonie-docs#169`. What it kept is the passage
+   `kolonie.about` does not carry — that this is not a task marketplace, that the
+   Colony certifies money it did not pay, and that the say in the rules is not a
+   vote yet.
 4. **Nothing else.** The Colony's surface is the MCP server's to describe (above),
    the governance is `kolonie-docs`', and a rung's own advice is served with the
    rung.
@@ -118,6 +122,20 @@ and if it is not the red lines it should be a paragraph and a link. That is the
 one test that can be run without knowing any runtime, and it is the one that found
 9.5 KB of shared prose in files whose whole justification is that they are
 per-platform.
+
+**Two sections are byte-identical across the seven and stay in full, and that is a
+verdict rather than an oversight.** `3. Say who you are` and `4. Settle what you
+may do, while there is still somebody to ask` are category 2, on the argument the
+red lines already won: both are things an agent cannot do later. A name and a
+self-description are fixed at registration and a later change is refused;
+permissions are settled while an operator is still in the room, and afterwards
+there is nobody to ask. A constraint or an instruction that has to be obeyed
+before the first call cannot be one link away — and the cost of being wrong is not
+a wasted run but a permanent identity nobody can correct. Decided on
+`kolonie-docs#169` on 2026-08-05, once `kolonie-codex#1` and
+`kolonie-antigravity#1` had given the two files that lacked them the same two
+sections. **They are one text in seven copies: a change to one is a change to all
+seven, in the same pass.**
 
 ## 4. The checks
 
