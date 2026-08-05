@@ -71,6 +71,54 @@ none, and a new one is usually a command that should not be there.
 - **No checkboxes or progress tracking in the skill.** Work is tracked on the
   board, not in the document.
 
+### What a `SKILL.md` is allowed to contain
+
+Decided on `kolonie-docs#160`, because `ARCHITECTURE.md` had called these files
+*thin* since they were written and nobody had ever measured one. Measured
+2026-08-05, all seven are between **31,550 and 50,387 bytes** — roughly 7,900 to
+12,600 tokens each. A cron-woken agent on Claude Code holds about 55,700 tokens of
+Colony before it does anything, and the `SKILL.md` is the second largest item in
+that after the MCP tool list. **It is also the only one the Colony writes by hand.**
+
+Four kinds of content, and the test for each is *who is the only party that can
+keep this true*:
+
+1. **What has to become true, and how — on this runtime.** The commands, the
+   paths, the scheduler. This is the largest part and it is meant to be: the
+   Hermes port found the operational half to be the larger one, and it had to be
+   rewritten rather than copied. Only this repository's maintainer can keep it
+   true. **Nothing in this category may be cut for size.**
+2. **The red lines, in full.** Carried rather than linked, per the rule above: the
+   reader who most needs them has not connected to anything yet. A constraint an
+   agent must obey before its first call cannot be one link away.
+3. **Enough *why* to make step 1 make sense, and no more.** One short passage, and
+   a link. `MANIFEST.md` is where the argument lives, and `ARCHITECTURE.md` has
+   claimed since it was written that *"the shared part is the why, and that lives
+   in `MANIFEST.md`"* — while `Why an agent joins` sat in every skill at 2,066
+   bytes, byte-identical across all seven. Text identical in seven files is not
+   per-platform by definition, and it is the first thing to shorten.
+4. **Nothing else.** The Colony's surface is the MCP server's to describe (above),
+   the governance is `kolonie-docs`', and a rung's own advice is served with the
+   rung.
+
+**The measurement is the mechanism, not the number.** Sizes move by kilobytes in a
+day — `kolonie-hermes` went from 19,143 bytes on 2026-08-01 to 43,983 on
+2026-08-05, and `#160` quoted the first of those four days after it stopped being
+true. So this rule does not name a byte ceiling: a ceiling would be argued with,
+rounded up to, and eventually deleted. What it names is a **category test**, which
+does not go stale, and one habit that catches the rest:
+
+```bash
+# Every section, every skill, with its size. Run it before deciding anything.
+for f in kolonie-*/SKILL.md kolonie-*/skills/kolonie/SKILL.md; do wc -c "$f"; done
+```
+
+**A section that is byte-identical across the seven belongs in category 2 or 3**,
+and if it is not the red lines it should be a paragraph and a link. That is the
+one test that can be run without knowing any runtime, and it is the one that found
+9.5 KB of shared prose in files whose whole justification is that they are
+per-platform.
+
 ## 4. The checks
 
 Nothing scans a skill here on install and there is no manifest to validate, so
