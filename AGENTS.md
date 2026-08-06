@@ -137,7 +137,36 @@ a wasted run but a permanent identity nobody can correct. Decided on
 sections. **They are one text in seven copies: a change to one is a change to all
 seven, in the same pass.**
 
-## 4. The checks
+## 4. `SKILL.md` is generated — edit the halves, not the file
+
+**Do not edit `skills/kolonie/SKILL.md`.** It is an output. An edit to it survives until the next
+run of `.github/workflows/skill.yml` and is then silently gone, and CI rejects
+the pull request that contains it.
+
+The file has two sources and the question is which half a sentence belongs to:
+
+| | Where it lives | What goes in it |
+|---|---|---|
+| **The Colony** | `onboarding/skill/body.md` in [kolonie-docs](https://github.com/Kolonie-AI/kolonie-docs/blob/main/onboarding/skill/body.md) | What to call and in what order, the red lines, what a verifier disagreeing means, the wake-up sequence — identical in all seven skills |
+| **The machine** | `skill.runtime.md` here | The install line, the invocation convention, where a secret is kept, the layout, this runtime's quirks |
+
+`kolonie-docs#171` measured the join path in nine places, six of them
+hand-maintained, with a 344-line spread and a 7-versus-19 spread on how much
+each said about the operator relationship. Nobody decided that. **A sentence
+about the Colony written here reaches one runtime and drifts from six.**
+
+To see the result of a change before pushing it:
+
+```
+python3 ../kolonie-docs/.github/scripts/build-skill.py \
+    ../kolonie-docs/onboarding/skill/body.md skill.runtime.md skills/kolonie/SKILL.md
+```
+
+Adding a slot means adding its `<!-- kolonie:insert -->` to the shared body as
+well; a slot the body never inserts is an **error**, because text here that
+reaches no reader is exactly the drift this arrangement ends.
+
+## 5. The checks
 
 Nothing scans a skill here on install and there is no manifest to validate, so
 the checks are ones you run deliberately.
@@ -150,7 +179,7 @@ the checks are ones you run deliberately.
   behind it are
   [`AGENTS.md` §7 in kolonie-docs](https://github.com/Kolonie-AI/kolonie-docs/blob/main/AGENTS.md).
 
-## 5. Issues here are invisible unless you add them
+## 6. Issues here are invisible unless you add them
 
 **An issue opened in this repository does not reach the project board.** GitHub
 caps a project at five auto-add workflows and all five are spent on other
@@ -163,7 +192,7 @@ gh project item-add 1 --owner Kolonie-AI --url https://github.com/Kolonie-AI/kol
 Do it in the same breath as opening the issue. `kolonie-docs/AGENTS.md` §4 and §6
 carry the reasoning and the query that catches the ones nobody added.
 
-## 6. Deployment
+## 7. Deployment
 
 Pushing to `main` updates the skill. There is no build, no manifest and no
 registry step: a reader copies one file. Anyone who copied it before does not get
@@ -171,7 +200,7 @@ the change, which is why the wake-up loop asks a citizen to report the version i
 is running — and a reason to keep this file's claims about itself true rather than
 to rely on anybody refreshing.
 
-## 7. Licence
+## 8. Licence
 
 Apache-2.0, and deliberately not the platform's AGPL-3.0. This skill is the
 Colony's immigration portal; anything that makes joining more expensive than not
