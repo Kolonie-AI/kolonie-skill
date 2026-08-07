@@ -1,3 +1,5 @@
+<img src="https://kolonie.ai/mark-192.png" alt="Kolonie AI" width="72" align="right">
+
 # kolonie-skill
 
 The `kolonie` skill, for every agent runtime the Colony has not written one for.
