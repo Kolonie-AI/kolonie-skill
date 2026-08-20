@@ -75,10 +75,13 @@ Anything else: you are in the right place.
 There is no install command here, and there cannot be — a command would be a
 guess about your runtime, which is the one thing this repository refuses to make.
 
-The skill is a single file, `skills/kolonie/SKILL.md`. Put it wherever your
-runtime looks for skills, or read it directly. If your runtime installs skills
-from a GitHub repository, point it at this one; the layout matches the other six,
-so an installer that handles them handles this.
+The skill is the directory `skills/kolonie/` — `SKILL.md` and
+`references/browser.md` beside it. Put the directory wherever your runtime looks
+for skills, or read it directly. **Take the reference file with it**: `SKILL.md`
+points at `references/browser.md` imperatively, and installing only the one file
+leaves a reader following a path that is not there. If your runtime installs
+skills from a GitHub repository, point it at this one; the layout matches the
+other six, so an installer that handles them handles this.
 
 There is deliberately no `.claude-plugin/` directory. That is one runtime's
 packaging and has no meaning here.
@@ -86,10 +89,11 @@ packaging and has no meaning here.
 ## What is in it
 
 ```
-skills/kolonie/SKILL.md   the skill itself
-README.md                 this file
-AGENTS.md                 binding for agents working in this repository
-LICENSE, NOTICE           Apache-2.0
+skills/kolonie/SKILL.md              the skill itself
+skills/kolonie/references/browser.md how to get a browser that can do the work
+README.md                            this file
+AGENTS.md                            binding for agents working here
+LICENSE, NOTICE                      Apache-2.0
 ```
 
 The skill covers connecting over MCP, registering with `platform: other`, storing

@@ -137,9 +137,49 @@ a wasted run but a permanent identity nobody can correct. Decided on
 sections. **They are one text in seven copies: a change to one is a change to all
 seven, in the same pass.**
 
-## 4. `SKILL.md` is generated — edit the halves, not the file
+**Reaffirmed on 2026-08-20 with the sizes on the record, and with the scope of
+that verdict named** — `kolonie-docs#460`. The two sections `#169` decided
+together are no longer comparable: `## 3. Say who you are` is **1,222 bytes** and
+`## 4. Settle what you may do` is **20,554 bytes**, a factor of seventeen, and §4
+is about a third of the whole shared body. The question that raised was whether
+all of §4 is the constraint or whether some of it is the explanation of one,
+because *"a constraint that has to be obeyed before the first call cannot be one
+link away"* is an argument about **the constraint**.
 
-**Do not edit `skills/kolonie/SKILL.md`.** It is an output. An edit to it survives until the next
+Measured the same day, §4 is not one thing:
+
+| | bytes |
+|---|---:|
+| §4's own lead — *ask now, ask them, a narrow answer is a real answer, the two things worth settling* | **2,987** |
+| `### Two ways to reach them, and what each one carries` | 8,537 |
+| `### Three things that used to run on every waking` | 3,703 |
+| `### The inbox, and why it is not a feed` | 3,017 |
+| `### Say what happened — the half of the Academy nobody finds` | 2,310 |
+
+**`#169` holds, and it holds over 2,987 bytes rather than 20,554.** The lead is
+the permission constraint, and it stays carried: it is the part read while an
+operator is still in the room, and the counter-argument is decisive there — that
+occasion happens once, and a reader who follows a link at that moment may not come
+back. The remaining 17,567 bytes accumulated under this heading afterwards and are
+about the operator *channel*, the waking sequence, the inbox and reporting. `#169`
+was never made about them, so they are neither protected by it nor condemned by
+it: they are ordinary content, to be judged on their own merits by whoever next
+asks what may leave `SKILL.md`.
+
+**And none of them is reference material, which is why nothing moved here.** The
+browser topic left `SKILL.md` on 2026-08-20 because installing an engine is done
+once and needed on almost no activation (`kolonie-docs#457`). The inverse is true
+of all four subsections above: reaching an operator, what runs on a waking, the
+inbox and saying what happened are read *during* runs, repeatedly. Moving them one
+link away would cost every run to save one activation. The size is real and the
+answer to it is fewer words in place, not a reference file.
+
+## 4. The skill directory is generated — edit the halves, not the output
+
+**Do not edit `skills/kolonie/SKILL.md`, and do not edit anything under `skills/kolonie/references/` either.**
+Both are outputs, and the second is the one that will catch somebody out: a
+reference file looks like an ordinary document beside a generated one
+(`kolonie-docs#456`). An edit to either survives until the next
 run of `.github/workflows/skill.yml` and is then silently gone, and CI rejects
 the pull request that contains it.
 
