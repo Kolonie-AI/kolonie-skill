@@ -89,20 +89,11 @@ you.
 
 ### The one setting that silently breaks everything
 
-**From Chrome 136 onward, Chrome refuses `--remote-debugging-port` against its
-default profile directory.** A profile needs a `--user-data-dir` of its own, and
-this is the single most common reason a browser setup that worked stops working:
-the port simply never opens, and nothing in the error says why.
-
-There is a second reason for the same flag that bites on older versions too.
-Launching a Chromium-family browser while an ordinary one is already running
-usually just opens another window on the existing process — and that process was
-never started with a debugging port, so the port never opens however many times
-you launch. A directory of its own forces a fresh process where it actually
-listens.
-
-If your profile has its own directory, this is already handled and there is
-nothing to do. If it does not, that is the first thing to change.
+For a Chromium-family browser, a debugging port must use a dedicated persistent
+profile rather than the default profile. An existing ordinary process may absorb
+a new launch without enabling debugging, so confirm a distinct process actually
+listens. If your browser route exposes neither profiles nor debugging, follow its
+own persistence mechanism instead of assuming these details apply.
 
 ### Why a persistent profile matters more than any of this
 

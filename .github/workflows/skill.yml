@@ -105,6 +105,9 @@ jobs:
       # makes this a check rather than a daily red build: three divergences were
       # decided about and are named in it with the issue that settles each, and
       # anything else fails here.
+      - name: Test the generated runtime-neutral contract
+        run: python3 tests/test_generated.py
+
       - name: Install the standard's validator
         run: pip install --disable-pip-version-check --quiet skills-ref
 
